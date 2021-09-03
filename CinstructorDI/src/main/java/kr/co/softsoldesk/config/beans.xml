@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd" 
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                           xmlns="http://www.springframework.org/schema/beans"
+                           default-init-method="default_init" default-destroy-method="default_destroy"
+                           >
+                          
+                          
+		<bean id="obj1" class="kr.co.softsoldesk.bean.TestBean1" lazy-init="true"/>
+		
+		<bean id="obj2" class="kr.co.softsoldesk.bean.TestBean1" lazy-init="true">
+			<constructor-arg type="int" value="100"/>
+		</bean>
+		
+		<bean id="obj3" class="kr.co.softsoldesk.bean.TestBean1" lazy-init="true">
+			<constructor-arg type="double" value="11.11"/>
+		</bean>
+		
+		<bean id="obj4" class="kr.co.softsoldesk.bean.TestBean1" lazy-init="true">
+			<constructor-arg type="java.lang.String" value="Soldesk"/>
+		</bean>
+		
+		<bean id="obj5" class="kr.co.softsoldesk.bean.TestBean1" lazy-init="true">
+			<constructor-arg type="int" value="100"/>
+			<constructor-arg type="double" value="11.11"/>
+			<constructor-arg type="java.lang.String" value="Soldesk"/>
+		</bean>
+		
+		<bean id="obj6" class="kr.co.softsoldesk.bean.TestBean1" lazy-init="true">
+			<!-- arg끼리 자리가 바뀌어도 지장 없음 -->
+			<constructor-arg type="double" value="11.11"/>
+			<constructor-arg type="java.lang.String" value="매개변수 순서 바뀜"/>
+			<constructor-arg type="int" value="100"/>
+		</bean>
+		
+		<bean id="obj7" class="kr.co.softsoldesk.bean.TestBean1" lazy-init="true">
+			<constructor-arg type="int" value="100" index="0"/>
+			<constructor-arg type="double" value="11.11" index="1"/>
+			<constructor-arg type="java.lang.String" value="인덱스는 순서 맞춰야함" index="2"/>
+		</bean>
+		
+		
+		<!-- 객체를 매개변수로 받는 방법1 -->
+		<bean id="obj8" class="kr.co.softsoldesk.bean.TestBean2" lazy-init="true">
+			<!-- 1번째 매개변수 -->
+			<constructor-arg>
+				<bean class="kr.co.softsoldesk.bean.DataBean"/>
+			</constructor-arg>
+			<!-- 2번째 매개변수 -->
+			<constructor-arg>
+				<bean class="kr.co.softsoldesk.bean.DataBean"/>
+			</constructor-arg>
+		</bean>
+		
+		<!-- 객체를 매개변수로 받는 방법2 -->
+		<bean id="data_bean" class="kr.co.softsoldesk.bean.DataBean" scope="prototype"/>
+		<bean id="obj9" class="kr.co.softsoldesk.bean.TestBean2" lazy-init="true">
+			<!-- 매개변수 2개라 2개 넣어줌 -->
+			<constructor-arg ref="data_bean"/>
+			<constructor-arg ref="data_bean"/>
+		</bean>
+		
+		<!-- 1번 방법 -->
+		<!-- <bean id="sony" class="kr.co.softsoldesk.bean.SonySpeaker" scope="prototype"/>
+		<bean id="tv" class="kr.co.softsoldesk.bean.SamsungTV" lazy-init="true">
+			매개변수 2개라 2개 넣어줌
+			<constructor-arg type="int" value="2700000"/>
+			<constructor-arg ref="sony"/>
+		</bean> -->
+		
+		<!-- 2번 방법 -->
+		<bean id="sony" class="kr.co.softsoldesk.bean.SonySpeaker" scope="prototype"/>
+		<bean id="tv" class="kr.co.softsoldesk.bean.SamsungTV" lazy-init="true">
+			<constructor-arg ref="sony" />
+			<constructor-arg ref="sony"/>
+		</bean>
+</beans>
