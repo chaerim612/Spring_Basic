@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd" 
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                           xmlns="http://www.springframework.org/schema/beans"
+                           >
+                           
+        <bean id="t1" class="kr.co.softsoldesk.bean.TestBean">
+        	<property name="data1" value="100"/>
+        	<property name="data2" value="100.123"/>
+        	<property name="data3" value="true"/>
+        	<property name="data4" value="핀터레스트 다 끝내기"/>
+        	<!-- 객체 선언 -->
+        	<property name="data5">
+        		<bean class="kr.co.softsoldesk.bean.DataBean"/>
+        	</property>
+        	<!-- 이미 만들어져 있는 객체 생성 -->
+        	<property name="data6" ref="data_bean"/>
+        </bean>  
+        
+        <!--   ↓↓↓↓↓↓ 객체 만들어 놓음 ↓↓↓↓↓↓↓ -->
+        <bean id="data_bean" class="kr.co.softsoldesk.bean.DataBean"/> 
+        
+        
+        
+        <bean id="tv" class="kr.co.softsoldesk.bean.SamsungTV">
+        	<property name="speaker">
+        		<bean class="kr.co.softsoldesk.bean.AppleSpeaker"/>
+        	</property>
+        	<property name="price" value="10000000"></property>
+        </bean> 
+                              
+		
+</beans>

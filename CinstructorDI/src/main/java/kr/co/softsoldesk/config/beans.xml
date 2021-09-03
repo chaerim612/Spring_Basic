@@ -65,7 +65,6 @@
 		<!-- 1번 방법 -->
 		<!-- <bean id="sony" class="kr.co.softsoldesk.bean.SonySpeaker" scope="prototype"/>
 		<bean id="tv" class="kr.co.softsoldesk.bean.SamsungTV" lazy-init="true">
-			매개변수 2개라 2개 넣어줌
 			<constructor-arg type="int" value="2700000"/>
 			<constructor-arg ref="sony"/>
 		</bean> -->
