@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	default-init-method="default_init"
+	default-destroy-method="default_destroy">
+	<bean id="t1" class="kr.co.softsoldesk.bean.TestBean">
+
+		<!-- 제네릭이 String인 리스트 -->
+		<property name="list1">
+			<list>
+				<value>문자열1</value>
+				<value>문자열2</value>
+				<value>문자열3</value>
+				<value>문자열4</value>
+			</list>
+		</property>
+
+		<!-- 제네릭이 Integer인 리스트 -->
+		<property name="list2">
+			<list>
+				<value>100</value>
+				<value>200</value>
+				<value>300</value>
+				<value>400</value>
+			</list>
+		</property>
+
+		<!-- 제네릭이 Data인 리스트 -->
+		<property name="list3">
+			<list>
+				<!-- 싱글톤으로 같은 주소로 주입하므로 scope='prototype' 선언해야함 -->
+				<bean class="kr.co.softsoldesk.bean.DataBean" />
+				<bean class="kr.co.softsoldesk.bean.DataBean" />
+
+				<!-- 기존에 정의되어있는 객체 참조 방식 -->
+				<ref bean="data_bean" />
+				<ref bean="data_bean" />
+			</list>
+		</property>
+
+		<!-- 제네릭이 String인 Set -->
+		<property name="set1">
+			<set>
+				<value>문자열1</value>
+				<value>문자열2</value>
+				<value>문자열3</value>
+				<value>문자열4</value>
+				<value>문자열5</value>
+			</set>
+		</property>
+
+		<!-- 제네릭이 Integer인 Set -->
+		<property name="set2">
+			<set>
+				<value type='int'>100</value>
+				<value type='int'>200</value>
+				<value type='int'>300</value>
+				<value type='int'>400</value>
+				<value type='int'>500</value>
+			</set>
+		</property>
+
+		<!-- 제네릭이 DataBean인 Set -->
+		<property name="set3">
+			<set>
+				<!-- 싱글톤으로 같은 주소로 주입하므로 scope='prototype' 선언해야함 -->
+				<bean class="kr.co.softsoldesk.bean.DataBean" />
+				<bean class="kr.co.softsoldesk.bean.DataBean" />
+
+				<!-- 기존에 정의되어있는 객체 참조 방식 -->
+				<ref bean="data_bean" />
+				<!-- 같은 거라 출력 안됨 -->
+				<ref bean="data_bean" />
+				<ref bean="data_bean" />
+			</set>
+		</property>
+
+		<!-- map -->
+		<property name="map1">
+			<map>
+				<entry key="a1" value="문자열" />
+				<entry key="a2" value="100" value-type="int" />
+
+				<!-- 클래스 객체 선언 -->
+				<entry key="a3">
+					<bean class="kr.co.softsoldesk.bean.DataBean" />
+				</entry>
+
+				<!-- 이미 정의되어 있는 클래스 객체 선언 -->
+				<entry key="a4" value-ref="data_bean" />
+
+				<!-- 리스트 -->
+				<entry key="a5">
+					<list>
+						<value>문자열1</value>
+						<value>문자열2</value>
+						<value>문자열3</value>
+						<value>문자열4</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+
+		<!-- property -->
+		<property name="prop1">
+			<props>
+				<prop key="p1">문자열1</prop>
+				<prop key="p2">문자열2</prop>
+				<prop key="p3">문자열3</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<bean id="addrlist" class="kr.co.softsoldesk.bean.CollectionBean">
+			<property name="addrlist">
+				<list>
+					<value>서울시종로구</value>
+					<value>수색동</value>
+				</list>
+			</property>
+		</bean>
+
+
+	<bean id="data_bean" class="kr.co.softsoldesk.bean.DataBean"
+		scope='prototype' />
+
+</beans>
