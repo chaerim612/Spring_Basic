@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	default-init-method="default_init"
+	default-destroy-method="default_destroy">
+	
+	<!-- #1 setter 주입을 이용한 객체 생성 -->
+	<bean id='obj1' class='kr.co.softsoldesk.bean.TestBean1'>
+		<property name="data1" ref="data_bean1"/>
+		<property name="data2" ref="data_bean1"/>
+	</bean>
+	
+	<!-- TestBean1에서 DataBean1을 참조하기 위해 DatBean1 클래스의 객체 생성(data_bean1, 멀티) -->
+	<bean id='data_bean1' class='kr.co.softsoldesk.bean.DataBean' scope="prototype"/>
+	
+	<!-- #2 byName 주입을 이용한 객체 생성 -->
+	<bean id='obj2' class='kr.co.softsoldesk.bean.TestBean1' autowire="byName"></bean>
+</beans>
