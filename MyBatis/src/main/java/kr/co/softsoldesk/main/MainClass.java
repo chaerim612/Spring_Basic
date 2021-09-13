@@ -15,6 +15,7 @@ public class MainClass {
 		AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(BeanConfigClass.class);
 		
 		MapperInterface mapper=ctx.getBean(MapperInterface.class);
+		
 		/*
 		//insert
 		JdbcBean bean1=new JdbcBean();
@@ -29,6 +30,7 @@ public class MainClass {
 		
 		System.out.println("저장 완료");
 		*/
+		
 		/*
 		//update
 		JdbcBean bean4=new JdbcBean();
